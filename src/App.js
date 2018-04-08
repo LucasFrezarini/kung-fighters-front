@@ -8,6 +8,7 @@ import './themes/css/base.css'
 import './themes/css/bootstrap-responsive.min.css';
 import './themes/css/font-awesome.css';
 import './themes/css/font-awesome-ie7.css';
+import './App.css';
 
 class App extends Component {
   render() {
