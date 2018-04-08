@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Carousel     from "./Carousel";
-import Sidebar      from "./Sidebar";
-import MainProducts from "./MainProducts";
+import Carousel     from "../components/Carousel";
+import Sidebar      from "../components/Sidebar";
+import MainProducts from "../components/MainProducts";
 
 export default class MainPage extends Component {
   render() {

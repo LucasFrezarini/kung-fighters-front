@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { Router, Route, browserHistory, IndexRoute } from "react-router";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import MainPage   from "./pages/MainPage";
+import NewProduct from "./pages/NewProduct";
+
+ReactDOM.render(
+  (<Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={MainPage}/>
+      <Route path="/newProduct" component={NewProduct}/> { /* Rota temporária, será mudada depois*/}
+    </Route>
+  </Router>), 
+  document.getElementById('root'));
 registerServiceWorker();

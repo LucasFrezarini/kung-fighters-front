@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Header       from "./components/Header";
 import Footer       from "./components/Footer";
-import MainPage     from "./components/MainPage";
 
 import './themes/bootshop/bootstrap.min.css';
 import './themes/css/base.css'
@@ -15,7 +14,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>  
-        <MainPage/>
+        <div id="main">
+          {this.props.children} {/* Vai ser o componente passado pelo react-router*/}
+        </div>
         <Footer/>
       </div>
     );

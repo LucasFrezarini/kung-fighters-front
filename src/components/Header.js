@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 
 export default class Header extends Component {
   
@@ -29,9 +30,9 @@ export default class Header extends Component {
                 <span className="icon-bar"></span>
               </a>
               <div className="navbar-inner">
-                <a className="brand" href="index.html">
-                  <img src="images/logo.png" alt="Bootsshop" />
-                </a>
+                <Link className="brand" to="/">
+                  <img src="images/logo.png" alt="Kung Fighters" />
+                </Link>
                 <form className="form-inline navbar-search" method="post" action="products.html">
                   <input id="srchFld" className="srchTxt" type="text" />
                   <select className="srchTxt">
@@ -47,7 +48,7 @@ export default class Header extends Component {
                     <a href="special_offer.html">Ofertas</a>
                   </li>
                   <li className="">
-                    <a href="cadastroProduto.html">Cadastro</a>
+                    <Link to="/newProduct">Cadastro</Link>
                   </li>
                   <li className="">
                     <a href="contact.html">Contato</a>
