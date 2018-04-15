@@ -8,7 +8,9 @@ export default class NewProduct extends Component {
     super();
     this.state = {
       name: "",
-      category: "Roupas",
+      category: {
+        name: "roupas"
+      },
       model: "",
       price: "",
       description: "",
@@ -22,6 +24,10 @@ export default class NewProduct extends Component {
     let changed         = {};
     changed[inputName]  = event.target.value;
     this.setState(changed); 
+  }
+
+  changeCategory(event) {
+    this.setState({category: {name: event.target.value}});
   }
 
   create(event) {
@@ -39,6 +45,7 @@ export default class NewProduct extends Component {
       }
     });
 
+    
     const requestInfo = {
       method: "POST",
       mode: "cors",
@@ -88,7 +95,7 @@ export default class NewProduct extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="CategoriaProduto">Categoria do Produto</label>
-                        <select className="form-control" id="CategoriaProduto" value={this.state.category} onChange={this.changeState.bind(this, "category")}>
+                        <select className="form-control" id="CategoriaProduto" value={this.state.category.name} onChange={this.changeCategory.bind(this)}>
                             <option>Roupas</option>
                             <option>Armas</option>
                             <option>Equipamentos</option>
