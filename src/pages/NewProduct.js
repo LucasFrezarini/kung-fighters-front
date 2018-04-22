@@ -11,6 +11,10 @@ export default class NewProduct extends Component {
       category: {
         name: "roupas"
       },
+      photos: [{
+        title: "",
+        url: ""
+      }],
       model: "",
       price: "",
       description: "",
@@ -30,10 +34,44 @@ export default class NewProduct extends Component {
     this.setState({category: {name: event.target.value}});
   }
 
+  uploadPhoto(event) {
+    const file = event.target.files[0];
+
+    const data = new FormData();
+    data.append('image', file);
+
+    const url = Api.getBaseUrl();
+
+    const requestInfo = {
+      method: 'POST',
+      mode: "cors",
+      body: data
+    };
+    
+    fetch(`http://${url}/product/upload/image`, requestInfo)
+      .then(res => {
+        if(res.ok) {
+          return res.json();
+        }
+
+        return res.text().then(response => Promise.reject(response));
+      })
+      .then(json => {
+        this.setState({photos: [{
+          title: json.filename,
+          url: json.path
+        }]})
+
+        console.log(this.state);
+      })
+      .catch(err => console.error(err));
+    
+  }
+
   create(event) {
     event.preventDefault();
     
-    const url     = Api.getBaseUrl();
+    const url  = Api.getBaseUrl();
 
     const body = JSON.stringify({
       product: {
@@ -41,10 +79,12 @@ export default class NewProduct extends Component {
         category: this.state.category,
         model: this.state.model,
         price: this.state.price,
-        description: this.state.description
+        description: this.state.description,
+        photos: this.state.photos
       }
     });
 
+    console.log(body);
     
     const requestInfo = {
       method: "POST",
@@ -55,8 +95,6 @@ export default class NewProduct extends Component {
         "Content-Type": "application/json"
       })
     }
-
-    console.log(`http://${url}/product`);
     
     fetch(`http://${url}/product`, requestInfo)
       .then(response => {
@@ -112,7 +150,7 @@ export default class NewProduct extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="FotoProduto">Foto do Produto</label>
-                        <input type="file" className="form-control-file" id="FotoProduto"/>
+                        <input type="file" className="form-control-file" id="FotoProduto" onChange={this.uploadPhoto.bind(this)}/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="DescricaoProduto">Descrição do Produto</label>
