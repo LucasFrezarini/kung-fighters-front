@@ -15,7 +15,7 @@ export default class Carousel extends Component {
               <div className="item active">
                 <div className="container">
                   <a href="register.html">
-                    <img style={{width: "100%"}} src="images/carousel/1.png" alt="special offers" />
+                    <img style={{width: "100%"}} src="/images/carousel/1.png" alt="special offers" />
                   </a>
                   <div className="carousel-caption">
                     <h4>First Thumbnail label</h4>
@@ -28,7 +28,7 @@ export default class Carousel extends Component {
               <div className="item">
                 <div className="container">
                   <a href="register.html">
-                    <img style={{width: "100%"}} src="images/carousel/2.png" alt="" />
+                    <img style={{width: "100%"}} src="/images/carousel/2.png" alt="" />
                   </a>
                   <div className="carousel-caption">
                     <h4>Second Thumbnail label</h4>
@@ -41,7 +41,7 @@ export default class Carousel extends Component {
               <div className="item">
                 <div className="container">
                   <a href="register.html">
-                    <img src="images/carousel/3.png" alt="" />
+                    <img src="/images/carousel/3.png" alt="" />
                   </a>
                   <div className="carousel-caption">
                     <h4>Third Thumbnail label</h4>

@@ -31,7 +31,7 @@ export default class Header extends Component {
               </a>
               <div className="navbar-inner">
                 <Link className="brand" to="/">
-                  <img src="images/logo.png" alt="Kung Fighters" />
+                  <img src="/images/logo.png" alt="Kung Fighters" />
                 </Link>
                 <form className="form-inline navbar-search" method="post" action="products.html">
                   <input id="srchFld" className="srchTxt" type="text" />

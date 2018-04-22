@@ -4,15 +4,17 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
 
-import MainPage     from "./pages/MainPage";
-import NewProduct   from "./pages/NewProduct";
-import ListProducts from "./pages/ListProducts";
+import MainPage       from "./pages/MainPage";
+import NewProduct     from "./pages/NewProduct";
+import ListProducts   from "./pages/ListProducts";
+import DetailProduct  from "./pages/DetailProduct";
 
 ReactDOM.render(
   (<Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage}/>
       <Route path="/products" component={ListProducts} />
+      <Route path="/product/:id" component={DetailProduct} />
       <Route path="/newProduct" component={NewProduct}/> { /* Rota temporária, será mudada depois*/}
     </Route>
   </Router>), 

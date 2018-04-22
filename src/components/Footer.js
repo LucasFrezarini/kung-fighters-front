@@ -36,13 +36,13 @@ export default class Footer extends Component {
               <div id="socialMedia" className="span3 pull-right">
                 <h5>REDES SOCIAIS</h5>
                 <a href="#">
-                  <img width="60" height="60" src="images/facebook.png" title="facebook" alt="facebook" />
+                  <img width="60" height="60" src="/images/facebook.png" title="facebook" alt="facebook" />
                 </a>
                 <a href="#">
-                  <img width="60" height="60" src="images/twitter.png" title="twitter" alt="twitter" />
+                  <img width="60" height="60" src="/images/twitter.png" title="twitter" alt="twitter" />
                 </a>
                 <a href="#">
-                  <img width="60" height="60" src="images/youtube.png" title="youtube" alt="youtube" />
+                  <img width="60" height="60" src="/images/youtube.png" title="youtube" alt="youtube" />
                 </a>
               </div>
             </div>
