@@ -1,161 +1,29 @@
 import React, { Component } from "react";
+import Panel from "./Panel";
+import Api from "../api/Api";
 
 export default class MainProducts extends Component {
 
   constructor() {
     super();
-    this.state = {};
+    this.state = {newProducts: [], featuredProducts: []};
   }
+
+  componentWillMount() {
+    fetch(`http://${Api.getBaseUrl()}/public/product?order=create_date&registersPerPage=6`).then(response => response.json())
+      .then(json => this.setState({newProducts: json.products}))
+      .then(() => console.log(this.state))
+      .catch(err => console.error(err));
+  } 
   
   render() {
     return (
       <div className="span9">
-        <div className="well well-small">
-          <h4>Produtos em destaque
-            <small className="pull-right"> + Produtos em destaque</small>
-          </h4>
-          <div className="row-fluid">
-            <div id="featured" className="carousel slide">
-              <div className="carousel-inner">
-                <div className="item active">
-                  <ul className="thumbnails">
-                    <li className="span3">
-                      <div className="thumbnail">
-                        <i className="tag"></i>
-                        <a href="product_details.html">
-                          <img src="images/products/b1.jpg" alt=""/>
-                        </a>
-                        <div className="caption">
-                          <h5>Lança - Kwan Tao</h5>
-                          <h4>
-                            <a className="btn" href="product_details.html">VIEW</a>
-                            <span className="pull-right">$180.00</span>
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="span3">
-                      <div className="thumbnail">
-                        <i className="tag"></i>
-                        <a href="product_details.html">
-                          <img src="images/products/b2.jpg" alt=""/>
-                        </a>
-                        <div className="caption">
-                          <h5>Punhal Duplo</h5>
-                          <h4>
-                            <a className="btn" href="product_details.html">VIEW</a>
-                            <span className="pull-right">$80.00</span>
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="span3">
-                      <div className="thumbnail">
-                        <i className="tag"></i>
-                        <a href="product_details.html">
-                          <img src="images/products/b3.jpg" alt=""/>
-                        </a>
-                        <div className="caption">
-                          <h5> <br/> Facão Longo</h5>
-                          <h4>
-                            <a className="btn" href="product_details.html">VIEW</a>
-                            <span className="pull-right">$210.00</span>
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="span3">
-                      <div className="thumbnail">
-                        <i className="tag"></i>
-                        <a href="product_details.html">
-                          <img src="images/products/b4.jpg" alt=""/>
-                        </a>
-                        <div className="caption">
-                          <h5>Manoplas de Combate</h5>
-                          <h4>
-                            <a className="btn" href="product_details.html">VIEW</a>
-                            <span className="pull-right">$130.00</span>
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                
-              </div>
-              <a className="left carousel-control" href="#featured" data-slide="prev">‹</a>
-              <a className="right carousel-control" href="#featured" data-slide="next">›</a>
-            </div>
-          </div>
-        </div>
         <h4>Novidades na loja </h4>
         <ul className="thumbnails">
-          <li className="span3">
-            <div className="thumbnail">
-              <a href="product_details.html">
-                <img src="images/products/6.jpg" alt="" />
-              </a>
-              <div className="caption">
-                <h5><br/> <br/>Protetor Bucal</h5>
-                <p>
-                  Moldavel para máxima proteção
-                </p>
-                <h4 style={{textAlign:"center"}}>
-                  <a className="btn" href="product_details.html">
-                    <i className="icon-zoom-in"></i>
-                  </a>
-                  <a className="btn" href="#">Adicionar ao 
-                    <i className="icon-shopping-cart"></i>
-                  </a>
-                  <a className="btn btn-primary" href="#">$20.00</a>
-                </h4>
-              </div>
-            </div>
-          </li>
-          <li className="span3">
-            <div className="thumbnail">
-              <a href="product_details.html">
-                <img src="images/products/7.jpg" alt="" />
-              </a>
-              <div className="caption">
-                <h5><br/><br/><br/><br/><br/>Luvas de Treino</h5>
-                <p>
-                  Dedos Livres para melhorar conforto e precisão
-                </p>
-                <h4 style={{textAlign:"center"}}>
-                  <a className="btn" href="product_details.html">
-                    <i className="icon-zoom-in"></i>
-                  </a>
-                  <a className="btn" href="#">Adicionar ao 
-                    <i className="icon-shopping-cart"></i>
-                  </a>
-                  <a className="btn btn-primary" href="#">$90.00</a>
-                </h4>
-              </div>
-            </div>
-          </li>
-          <li className="span3">
-            <div className="thumbnail">
-              <a href="product_details.html">
-                <img src="images/products/8.jpg" alt="" />
-              </a>
-              <div className="caption">
-                <h5>Ataduras Jugui</h5>
-                <p>
-                  Maximizando a proteção durante os treinos
-                </p>
-                <h4 style={{textAlign:"center"}}>
-                  <a className="btn" href="product_details.html">
-                    <i className="icon-zoom-in"></i>
-                  </a>
-                  <a className="btn" href="#">Adicioar ao 
-                    <i className="icon-shopping-cart"></i>
-                  </a>
-                  <a className="btn btn-primary" href="#">$45.00</a>
-                </h4>
-              </div>
-            </div>
-          </li>
+          {this.state.newProducts.map(product => (
+            <Panel href="/" img={product.photos[0] ? `http://${Api.getBaseUrl()}${product.photos[0].url}` : "https://scontent.fcgh8-1.fna.fbcdn.net/v/t1.0-9/14600914_1429503647079262_7782924176407537284_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEgqc4Fymvc1CP0EpiQ2I2Ndo62GJuMnN5Rrx9FfXjlRngVXwd-QJ_PvdyQFedeXyXSVrYDuOdc_Lau9t-wWSqDkrHIUtGWQG4KLVrcNNFIig&oh=100a838edcdecb2262d03dc94f7b9686&oe=5B6BBC49"} name={product.name} price={product.price} key={product._id}/>
+          ))}
         </ul>
       </div>
     )

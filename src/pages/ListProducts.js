@@ -15,7 +15,7 @@ export default class ListProducts extends Component {
   componentWillMount() {
     fetch(`http://${Api.getBaseUrl()}/public/product`)
       .then(response => response.json())
-      .then(products => this.setState({products: products}))
+      .then(json => this.setState({products: json.products}))
       .catch(err => console.error(err));
   }
 
